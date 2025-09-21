@@ -92,9 +92,9 @@ function drawGame() {
     snake.forEach((segment, index) => {
         // 蛇头与身体颜色区分
         if (index === 0) {
-            ctx.fillStyle = '#388E3C'; // 蛇头颜色
+            ctx.fillStyle = '#1976D2'; // 蛇头颜色 - 深蓝色
         } else {
-            ctx.fillStyle = '#4CAF50'; // 蛇身颜色
+            ctx.fillStyle = '#2196F3'; // 蛇身颜色 - 蓝色
         }
         
         ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 1, gridSize - 1);
