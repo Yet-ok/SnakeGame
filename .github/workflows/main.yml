@@ -6,16 +6,18 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-  
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+      - uses: actions/checkout@v3
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist       # 只部署游戏文件
+          force_orphan: true        # 强制覆盖 gh-pages
+
