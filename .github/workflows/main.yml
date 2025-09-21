@@ -1,4 +1,4 @@
-name: Deploy Snake Game
+name: Deploy SnakeGame
 
 on:
   push:
@@ -10,33 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ 拉取完整仓库
+      # 1️⃣ 检出仓库
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # 2️⃣ （可选）如果有构建过程
-      # 假设你有 package.json 和构建命令
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      # 2️⃣ 调试输出，确认文件存在
+      - name: List files
+        run: |
+          echo "Root directory:"
+          ls -R
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build   # 输出到 ./dist
-
-      # 3️⃣ 检查 dist 文件夹
-      - name: Check dist folder
-        run: ls -R ./dist
-
-      # 4️⃣ 部署到 GitHub Pages
+      # 3️⃣ 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./snakegame   # <- 替换为你游戏文件夹路径
           force_orphan: true
